@@ -124,3 +124,7 @@ h1 {
 .editPanel {
     display: none
 }
+
+.navbar {
+    margin-top: 30px;
+}
