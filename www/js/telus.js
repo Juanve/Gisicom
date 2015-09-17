@@ -27,7 +27,7 @@ function doProcess(){
         $.ajax
         ({
               type: "GET",
-              url: "http://telus.crontopia.com/telus/updatecode.php",
+              url: "http://telus.crontopia.com/gisicom/updatecode.php",
               async: true,
               success: function (data){
                 if (data == "OK"){
@@ -46,11 +46,11 @@ function doProcess(){
         $.ajax
         ({
               type: "GET",
-              url: "https://api.github.com/repos/agendacultural/phonegap-start/contents/" + path,
+              url: "https://api.github.com/repos/Juanve/Gisicom/contents/" + path,
               async: true,
               dataType: 'json',
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('agendacultural@misideas.me', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
              },
               success: function (data){
                   var coden = data.content;
@@ -78,12 +78,12 @@ function doProcess(){
         $.ajax
         ({
               type: "PUT",
-              url: "https://api.github.com/repos/agendacultural/phonegap-start/contents/" + filePath,
+              url: "https://api.github.com/repos/Juanve/Gisicom/contents/" + filePath,
               contentType: 'application/json',
               data: JSON.stringify(dataObject),
               async: true,
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('agendacultural@misideas.me', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
              },
               success: function (data){
                  $("#fileSha").text(data.content.sha);
@@ -100,7 +100,7 @@ function doProcess(){
        return 'Basic ' + hash;
     }
     function onPreview(){
-        var ref = window.open('http://telus.crontopia.com/website/www/', '_blank', 'location=no');
+        var ref = window.open('http://telus.crontopia.com/gisicomweb/www/', '_blank', 'location=no');
         ref.addEventListener('loadstart', function() { alert(event.url); });
     }
 
@@ -141,12 +141,12 @@ function doProcess(){
       $.ajax
         ({
               type: "PUT",
-              url: "https://api.github.com/repos/agendacultural/phonegap-start/contents/www/img/prima.jpg",
+              url: "https://api.github.com/repos/Juanve/Gisicom/contents/www/img/prima.jpg",
               contentType: 'application/json',
               data: JSON.stringify(dataObject),
               async: true,
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('agendacultural@misideas.me', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
              },
               success: function (data){
                  $("#fileSha").text(data.content.sha);
