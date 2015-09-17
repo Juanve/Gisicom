@@ -23,7 +23,7 @@ function doProcess(){
    $(".modal-body").html(modalBody);
 }
 
- function onClick(){
+ function build(){
         $.ajax
         ({
               type: "GET",
