@@ -101,7 +101,7 @@ function doProcess(){
     }
     function onPreview(){
         var ref = window.open('http://telus.crontopia.com/gisicomweb/www/', '_blank', 'location=no');
-        ref.addEventListener('loadstart', function() { alert(event.url); });
+        //ref.addEventListener('loadstart', function() { alert(event.url); });
     }
 
     $('#frmImport').submit(function(e){
