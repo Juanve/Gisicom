@@ -43,7 +43,6 @@ body2 {
 
 .app2 {
     text-align:center;
-    margin-top: 30px;
 }
 
 /* Landscape layout (with min-width) */
@@ -126,5 +125,5 @@ h1 {
 }
 
 .navbar {
-    margin-top: 30px;
+    margin-top: 20px;
 }
