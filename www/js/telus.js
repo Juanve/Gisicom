@@ -1,8 +1,29 @@
 ///////      Funciones de edicion de apps        ////// 
 
 function doLogin(){
-    localStorage["user"] = $("#inputUser").val ();
-    localStorage["pass"] = $("#inputPass").val ();
+        $.ajax
+        ({
+              type: "GET",
+              url: "https://api.github.com/repos/Juanve/Gisicom/contents/" + path,
+              async: true,
+              dataType: 'json',
+              beforeSend: function (xhr) {
+                 xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
+             },
+              success: function (data){
+                  var coden = data.content;
+                  var codeRaw = Base64.decode(coden.replace('','\n'));
+                  $("#codeArea").val(codeRaw);
+                  $("#fileSha").text(data.sha);
+                  $("#filePath").text(data.path);
+                  
+              },
+              error: function (msg){
+                alert('Sorry no se pudo obtener el contenido del index: ' + msg.responseText);
+              }
+        });
+       localStorage["user"] = $("#inputUser").val ();
+       localStorage["pass"] = $("#inputPass").val ();
 }
 
 function build(){
