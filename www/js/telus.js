@@ -19,7 +19,7 @@ function doLogin(){
               error: function (msg){
                 localStorage.removeItem("user");
                 localStorage.removeItem("pass");
-                if (msg.message == "Bad Credentials"){
+                if (msg.response.message == "Bad Credentials"){
                   alert("User/Password Incorrect");
                 } else {
                   alert('Sorry no se pudo loguear: ' + msg.responseText);
