@@ -1,26 +1,8 @@
 ///////      Funciones de edicion de apps        ////// 
 
-function doProcess(){
-   var cmdRaw = $("#cmdInput").val();
-   var cmd = normalize(cmdRaw);
-   switch (cmd.toLowerCase()){
-      case "agregar boton":
-        modalTitle = 'Add Button';
-        modalBody = '<form role="form" \
-                        <div class="form-group"> \
-                           <label class="pull-left" for="inputButtonCaption">Caption:</label><input  class="form-control" id="inputButtonCaption"></input> \
-                        </div> \
-                        <div class="form-group"> \
-                           <label class="pull-left" for="inputButtonOnClick">OnClick:</label><input  class="form-control" id="inputButtonOnClick"></input> \
-                        </div> \
-                     </form>';
-        break;
-      default:
-        modalTitle = 'Unrecognized Command';
-        modalBody = 'No params ';
-   }
-   $(".modal-title").html(modalTitle);
-   $(".modal-body").html(modalBody);
+function doLogin(){
+    localStorage["user"] = $("#inputUser").val ();
+    localStorage["pass"] = $("#inputPass").val ();
 }
 
  function build(){
@@ -50,7 +32,7 @@ function doProcess(){
               async: true,
               dataType: 'json',
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
              },
               success: function (data){
                   var coden = data.content;
@@ -83,7 +65,7 @@ function doProcess(){
               data: JSON.stringify(dataObject),
               async: true,
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
              },
               success: function (data){
                  $("#fileSha").text(data.content.sha);
@@ -146,7 +128,7 @@ function doProcess(){
               data: JSON.stringify(dataObject),
               async: true,
               beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth('juanvelez@wstgroup.net', 'psclcdGH7'));
+                 xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
              },
               success: function (data){
                  $("#fileSha").text(data.content.sha);
