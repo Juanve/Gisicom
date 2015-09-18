@@ -18,7 +18,7 @@ function doLogin(){
               },
               error: function (msg){
                 localStorage.removeItem("user");
-                localStoragere.moveItem("pass");
+                localStorage.removeItem("pass");
                 if (msg.message == "Bad Credentials"){
                   alert("User/Password Incorrect");
                 } else {
