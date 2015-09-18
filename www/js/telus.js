@@ -53,7 +53,7 @@ function getContent(path){
         $.ajax
         ({
               type: "GET",
-              url: "https://api.github.com/repos/Juanve/Gisicom/contents/" + path,
+              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/Gisicom/contents/" + path,
               async: true,
               dataType: 'json',
               beforeSend: function (xhr) {
@@ -68,7 +68,7 @@ function getContent(path){
                   
               },
               error: function (msg){
-                alert('Sorry no se pudo obtener el contenido del index: ' + msg.responseText);
+                alert('Sorry no se pudo obtener el contenido del archivo: ' + msg.responseText);
               }
         });
 }
@@ -86,7 +86,7 @@ function updateContent(){
         $.ajax
         ({
               type: "PUT",
-              url: "https://api.github.com/repos/Juanve/Gisicom/contents/" + filePath,
+              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/Gisicom/contents/" + filePath,
               contentType: 'application/json',
               data: JSON.stringify(dataObject),
               async: true,
@@ -98,7 +98,7 @@ function updateContent(){
                  alert("Successfull Updated " + data.content.name );
               },
               error: function (msg){
-                alert('Sorry no se pudo actualizar el contenido del index: ' + msg.responseText);
+                alert('Sorry no se pudo actualizar el contenido archivo: ' + msg.responseText);
               }
         });
 }
