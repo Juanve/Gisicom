@@ -1,6 +1,12 @@
 ///////      Funciones de edicion de apps        ////// 
 
 function doLogin(){
+    if (localStorage.getItem("user") !== null){
+       localStorage.removeItem("user")
+    }
+    if (localStorage.getItem("pass") !== null){
+       localStorage.removeItem("pass")
+    }
     localStorage["user"] = $("#inputUser").val ();
     localStorage["pass"] = $("#inputPass").val ();
 }
