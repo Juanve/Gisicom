@@ -13,11 +13,17 @@ function doLogin(){
                  xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
              },
               success: function (data){
-                  var user = data.login;
-                  alert("Loged as:" + user);
+                  var loginUser = data.login;
+                  localStorage["loginUser"] = loginUser;
               },
               error: function (msg){
-                alert('Sorry no se pudo loguear: ' + msg.responseText);
+                localStorage.removeItem("user");
+                localStorageremoveItem("pass");
+                if (msg.message == "Bad Credentials"){
+                  alert("User/Password Incorrect");
+                } else {
+                  alert('Sorry no se pudo loguear: ' + msg.responseText);
+                }
               }
         });
 }
