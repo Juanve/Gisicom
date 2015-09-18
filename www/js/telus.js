@@ -5,7 +5,7 @@ function doLogin(){
     localStorage["pass"] = $("#inputPass").val ();
 }
 
- function build(){
+function build(){
         $.ajax
         ({
               type: "GET",
@@ -22,8 +22,9 @@ function doLogin(){
                 alert('Sorry no se pudo contactar al proxy de telus: ' + msg.responseText);
               }
         });
-    }
-    function getContent(path){
+}
+
+function getContent(path){
          
         $.ajax
         ({
@@ -46,8 +47,9 @@ function doLogin(){
                 alert('Sorry no se pudo obtener el contenido del index: ' + msg.responseText);
               }
         });
-    }
-    function updateContent(){
+}
+
+function updateContent(){
         var content = btoa($("#codeArea").val());
         var fileSha = $("#fileSha").text();
         var filePath = $("#filePath").text();
@@ -75,69 +77,17 @@ function doLogin(){
                 alert('Sorry no se pudo actualizar el contenido del index: ' + msg.responseText);
               }
         });
-    }
-    function make_base_auth(user, password) {
+}
+    
+function make_base_auth(user, password) {
        var tok = user + ':' + password;
        var hash = btoa(tok);
        return 'Basic ' + hash;
-    }
-    function onPreview(){
+}
+
+function onPreview(){
         var ref = window.open('http://telus.crontopia.com/gisicomweb/www/', '_blank', 'location=no');
         //ref.addEventListener('loadstart', function() { alert(event.url); });
-    }
-
-    $('#frmImport').submit(function(e){
-     e.preventDefault();
-      //CHECK ERRORS ON USER SIDE, IF TRUE, END OPERATIONS.
-      if (import_errors()){
-         return false;
-      }
-      import_db();
-      return false;
-   });
-
-  function import_errors(){
-    if ($('#fileImportData').val() == ''){
-      alert('No file(s) selected. Please choose a image file to upload.');
-      return true;
-    }
-    if ($('#fileImportData').val() != ''){
-      var ext = $('#fileImportData').val().split('.').pop().toLowerCase();
-      if($.inArray(ext, ['jpeg','jpg','png']) == -1) {
-        alert('Invalid file type. Please choose a Image file to upload.');
-        return true;
-      }
-    }
-    return false;
- }
-
- function import_db(){
-      var formData = new FormData();
-      var imageFile = $('#fileImportData')[0].files[0];
-      var msg = 'New image uploaded';
-      var content = btoa(imageFile);
-      var dataObject = {
-            'message': msg,
-            'content': content
-      };
-      $.ajax
-        ({
-              type: "PUT",
-              url: "https://api.github.com/repos/Juanve/Gisicom/contents/www/img/prima.jpg",
-              contentType: 'application/json',
-              data: JSON.stringify(dataObject),
-              async: true,
-              beforeSend: function (xhr) {
-                 xhr.setRequestHeader('Authorization', make_base_auth(localStorage["user"], localStorage["pass"]));
-             },
-              success: function (data){
-                 $("#fileSha").text(data.content.sha);
-                 alert("Successful Upload Image " + data.content.name );
-              },
-              error: function (msg){
-                alert('Sorry no se pudo subir la imagen: ' + msg.responseText);
-              }
-        });
 }
 
 function goEdit(){
