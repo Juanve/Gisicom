@@ -110,7 +110,7 @@ function make_base_auth(user, password) {
 }
 
 function onPreview(){
-        var ref = window.open('http://telus.crontopia.com/gisicomweb/www/', '_blank', 'location=no');
+        var ref = window.open('http://gisicom.herokuapp.com/www/', '_blank', 'location=no');
         //ref.addEventListener('loadstart', function() { alert(event.url); });
 }
 
