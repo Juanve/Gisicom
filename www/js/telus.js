@@ -33,7 +33,7 @@ function build(){
         $.ajax
         ({
               type: "GET",
-              url: "http://gisicom.herokuapp.com/updatecode.php",
+              url: "https://gisicom-juanve.c9.io/updatecode.php",
               async: true,
               success: function (data){
                 if (data == "OK"){
@@ -110,7 +110,7 @@ function make_base_auth(user, password) {
 }
 
 function onPreview(){
-        var ref = window.open('http://gisicom.herokuapp.com/www/', '_blank', 'location=no');
+        var ref = window.open('https://gisicom-juanve.c9.io/www/', '_blank', 'location=no');
         //ref.addEventListener('loadstart', function() { alert(event.url); });
 }
 
