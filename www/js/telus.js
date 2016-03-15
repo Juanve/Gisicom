@@ -3,6 +3,7 @@
 function doLogin(){
         localStorage["user"] = $("#inputUser").val ();
         localStorage["pass"] = $("#inputPass").val ();
+        localStorage["repo"] = "Gisicom";
         $.ajax
         ({
               type: "GET",
@@ -53,7 +54,7 @@ function getContent(path){
         $.ajax
         ({
               type: "GET",
-              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/Gisicom/contents/" + path,
+              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/" + localStorage["repo"] + "/contents/" + path,
               async: true,
               dataType: 'json',
               beforeSend: function (xhr) {
@@ -86,7 +87,7 @@ function updateContent(){
         $.ajax
         ({
               type: "PUT",
-              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/Gisicom/contents/" + filePath,
+              url: "https://api.github.com/repos/" + localStorage["loginUser"] + "/" + localStorage["repo"] + "/contents/" + filePath,
               contentType: 'application/json',
               data: JSON.stringify(dataObject),
               async: true,
