@@ -33,7 +33,7 @@ function build(){
         $.ajax
         ({
               type: "GET",
-              url: "https://gisicom-juanve.c9.io/updatecode.php",
+              url: "http://gisicomupdate.crontopia.com/updatecode.php",
               async: true,
               success: function (data){
                 if (data == "OK"){
