@@ -110,7 +110,7 @@ function make_base_auth(user, password) {
 }
 
 function onPreview(){
-        var ref = window.open('https://gisicom-juanve.c9.io/www/', '_blank', 'location=no');
+        var ref = window.open('http://projects.crontopia.com/gisicom/', '_blank', 'location=no');
         //ref.addEventListener('loadstart', function() { alert(event.url); });
 }
 
