@@ -54,6 +54,9 @@
                <button class="btn btn-success  btn-lg" onclick="onPreview()">
                  <span class="glyphicon glyphicon-new-window " aria-hidden="true"></span>
                </button>
+               <div>
+                 <span id="beacons"></span>
+               </div>   
             </div><!-- end editPanel -->
             <!-- runPanel -->
             <div id="runPanel">
@@ -97,64 +100,16 @@
       <script src="js/telus.js"></script>
       <script src="js/tools.js"></script>
       <script>
-        function createBeacon() {
+          var region = new ibeacon.Region({
+            uuid: '74278bda-b644-4520-8f0c-720eaf059935'
+          });
 
-          var uuid = '74278bda-b644-4520-8f0c-720eaf059935'; // mandatory
-          var identifier = 'beaconAtTheMacBooks'; // mandatory
-          var minor = 1000; // optional, defaults to wildcard if left empty
-          var major = 5; // optional, defaults to wildcard if left empty
-
-          // throws an error if the parameters are not valid
-          var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor);
-
-          return beaconRegion;
-        }
-        // Start monitoring a single iBeacon
-
-        var logToDom = function (message) {
-            var e = document.createElement('label');
-            e.innerText = message;
-
-            var br = document.createElement('br');
-            var br2 = document.createElement('br');
-            document.body.appendChild(e);
-            document.body.appendChild(br);
-            document.body.appendChild(br2);
-        };
-
-        var delegate = new cordova.plugins.locationManager.Delegate().implement({
-
-            didDetermineStateForRegion: function (pluginResult) {
-
-                logToDom('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult));
-
-                cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: '
-                    + JSON.stringify(pluginResult));
-            },
-
-            didStartMonitoringForRegion: function (pluginResult) {
-                console.log('didStartMonitoringForRegion:', pluginResult);
-
-                logToDom('didStartMonitoringForRegion:' + JSON.stringify(pluginResult));
-            },
-
-            didRangeBeaconsInRegion: function (pluginResult) {
-                logToDom('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult));
+          ibeacon.startRangingBeaconsInRegion({
+            region: region,
+            didRangeBeacons: function(result) {
+              $("#beacons").html('I see ' + result.beacons.length + ' beacons');
             }
-
-        });
-
-        var uuid = '74278bda-b644-4520-8f0c-720eaf059935';
-        var identifier = 'beaconOnTheMacBooksShelf';
-        var minor = 1000;
-        var major = 5;
-        var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor);
-
-        cordova.plugins.locationManager.setDelegate(delegate);
-        cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion)
-            .fail(console.error)
-            .done();
-
+          });
       </script>
     </body>
 </html>
